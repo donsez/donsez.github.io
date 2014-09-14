@@ -1,0 +1,30 @@
+{
+    "version": "0.1",
+    "name": "QR Code Generator",
+    "launch_path": "/index.html",
+    "description": "Simple app that draw QRCodes on your device screen",
+    "icons": {
+        "64": "icons/logo64.png",
+        "128": "icons/logo128.png",
+        "512": "icons/logo512.png"
+    },
+    "developer": {
+        "name": "Didier Donsez",
+        "url": "http://donsez.github.io"
+    },
+    "installs_allowed_from": ["*"],
+    "default_locale": "en",
+    "locales": {
+      "fr": {
+          "name" : "Générateur de QR Code",
+	      "description" : "Simple application qui dessine des QR Codes sur l'écran de votre mobile"
+	        }
+    "permissions": {
+        "desktop-notification": {
+            "description" : "To show notifications"
+        },
+        "geolocation": {
+            "description" : "Marking out user location"
+        }
+    }
+}

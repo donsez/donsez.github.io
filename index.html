@@ -22,8 +22,8 @@
     
     <!-- Custom styles for slides backgrounds -->
     <style>
-		.bg-ducktape {
-			background-image: url('images/ducktape.png');
+		.bg-main {
+			background-image: url('images/jumpers.jpg');
 			background-size: cover;
 						
 			background-repeat: no-repeat;
@@ -35,16 +35,14 @@
     
 		.bg-qrcode {
 			background-image: url('images/ducktape.png');
-			background-size: cover;
-			
-			//background-repeat: repeat;
-		    //background-position: center;
-    		//width: 100%;
-    		//height: 100%;
-			
+			background-size: cover;			
  		}
 		.bg-fablabs {
 			background-image: url('images/makerbazaar.png');
+			background-size: cover;
+ 		}
+		.bg-arduino {
+			background-image: url('images/arduinostuff.jpg');
 			background-size: cover;
  		}
 		.bg-opensmartcampus {
@@ -55,11 +53,19 @@
 			background-image: url('images/absrolls.png');
 			background-size: cover;
  		}
+		.bg-lasercutter {
+			background-image: url('images/lasercutter.jpg');
+			background-size: cover;
+ 		}
+		.bg-recycling {
+			background-image: url('images/recycledsteppers.jpg');
+			background-size: cover;
+ 		}
 	</style>
    
     
   </head>
-  <body class="bg-ducktape">
+  <body class="bg-main">
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -67,7 +73,7 @@
     <script src="js/bootstrap.min.js"></script>
 
 
-   <div class="navbar-wrapper bg-ducktape">
+   <div class="navbar-wrapper bg-main">
       <div class="container">
 
         <div class="navbar navbar-inverse navbar-static-top" role="navigation">
@@ -90,6 +96,8 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dev <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="qrcodegen">QR Code Generator</a></li>
+                    <li><a href="#">Arduino</a></li>
+                    <li><a href="#">OSGi</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
@@ -126,6 +134,9 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
         <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+        <li data-target="#myCarousel" data-slide-to="6"></li>
       </ol>
       
       <div class="carousel-inner">
@@ -164,16 +175,48 @@
         </div>
 
         <div class="item">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAFVVVQAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Fifth slide">
+          <div class="container">
+            <div class="carousel-caption bg-arduino">
+              <h1>Arduino Sketches</h1>
+              <p>My Arduino Sketches.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse Soon</a></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="item">
           <img src="data:image/gif;base64,R0lGODlhAQABAIAAAFVVVQAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Fourth slide">
           <div class="container">
             <div class="carousel-caption bg-3dprinter">
-              <h1>3D Printing Gallery</h1>
+              <h1>3D Printed Things Gallery</h1>
               <p>My 3D Printing Gallery.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Visit</a></p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Visit Soon</a></p>
             </div>
           </div>
         </div>
 
+        <div class="item">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAFVVVQAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Sixth slide">
+          <div class="container">
+            <div class="carousel-caption bg-lasercutter">
+              <h1>Laser-Cutted Things Gallery</h1>
+              <p>My Laser-Cutted Things Gallery.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Visit Soon</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAFVVVQAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Sixth slide">
+          <div class="container">
+            <div class="carousel-caption bg-recycling">
+              <h1>Recycling components</h1>
+              <p>DIY means Recycling, Hacking, Reusing ...</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Visit Soon</a></p>
+            </div>
+          </div>
+        </div>
         
       </div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>

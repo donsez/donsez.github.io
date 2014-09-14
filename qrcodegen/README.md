@@ -11,7 +11,7 @@ Didier Donsez, https://github.com/donsez http://donsez.github.io
 * adapt the QR code canvas to the size of the display screen
 * button background color when a QR mode is selected (DONE)
 * Manifest (.webapp, package.json)
-* Manage dependencies and versions (bootstrap, qr.js, jQuery, ...)
+* Manage dependencies and versions (bootstrap@3.2.0, qr.js, jQuery@1.11.1, ...)
 * Packaging for Firefox OS App Center
 * Licence
 
