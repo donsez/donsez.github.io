@@ -1,291 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>QR Code :: Generator</title>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR Code :: Generator</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-  </head>
-  <body>
+</head>
+<body>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- <script
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!-- <script
     src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-    <script src="js/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
 
-<script src="js/qr.min.js"></script>
+	<script src="js/qr.min.js"></script>
 
-<script>
-
-function genQRCode(msg) {
-
-qr.canvas({
-canvas: document.getElementById('qr-code'),
-value: msg,
-size: 10,
-level: 'M'
-});
-
-}
-
-function XXXXonQRCodeMsgChange() {
-}
-function onQRCodeMsgChange() {
-str="";
-if(currentmode=="http") {
- str='http://'+ document.getElementById('http-url').value
-;
-} else if(currentmode=="text") {
-  genQRCode(document.getElementById('text-message').value
-);
-} else if(currentmode=="sms") {
-  str='smsto:'+ document.getElementById('sms-number').value+':'+
-document.getElementById('sms-message').value
-;
-} else if(currentmode=="tel") {
-  str='tel:'+ document.getElementById('tel-number').value
-;
-} else if(currentmode=="geo") {
-  str='geo:'+ document.getElementById('geo-lat').value
-+':'+ document.getElementById('geo-lon').value
-+'?q='+ document.getElementById('geo-query').value
-;
-} else if(currentmode=="wifi") {
-  //WIFI:S:ssid;T:WEP;P:password;H:true;;
-  str='WIFI:S:'+ document.getElementById('wifi-ssid').value
-+';P:'+ document.getElementById('wifi-password').value
-;
-} else if(currentmode=="mail") {
-  str='mailto:'+ document.getElementById('mail-address').value+':'+
-document.getElementById('mail-message').value
-;
-}
-genQRCode(str);
-$( "#generatedstr" ).replaceWith( "<p id=\'generatedstr\'>"+str+"</p>" );
-
-}
-
-function swap(one, two) {
-   // if(one==two) return;
-    document.getElementById("input-"+one).style.display = 'none';
-    document.getElementById("input-"+two).style.display = 'block';
-    $( "#but-"+one ).removeClass( "btn-primary" ).addClass( "btn-default" );
-    $( "#but-"+two ).removeClass( "btn-default" ).addClass( "btn-primary" );
-}
-
-var currentmode="http";
-
-function switchToHTTP() {
-swap(currentmode,"http");
-currentmode="http";
-onQRCodeMsgChange();
-}
-function switchToHTTPS() {
-swap(currentmode,"https");
-currentmode="https";
-onQRCodeMsgChange();
-}
-//smsto:num:msg
-function switchToSMS() {
-swap(currentmode,"sms");
-currentmode="sms";
-onQRCodeMsgChange();
-}
-//text
-function switchToText() {
-swap(currentmode,"text");
-currentmode="text";
-onQRCodeMsgChange();
-}
-
-function switchToTel() {
-swap(currentmode,"tel");
-currentmode="tel";
-onQRCodeMsgChange();
-}
-function switchToMail() {
-swap(currentmode,"mail");
-currentmode="mail";
-onQRCodeMsgChange();
-}
-
-function switchToGeo() {
-swap(currentmode,"geo");
-currentmode="geo";
-onQRCodeMsgChange();
-}
-
-function switchToWifi() {
-swap(currentmode,"wifi");
-currentmode="wifi";
-onQRCodeMsgChange();
-}
-
-</script>
+	<script src="qrcodegen.js"></script>
 
 
-<div class="panel panel-default">
+	<div class="panel panel-default">
 
-  <div class="panel-heading">
+		<div class="panel-heading">
 
-    <div class="btn-group">
-    <button id="but-http" type="button" class="btn btn-primary btn-lg"
-      onclick="switchToHTTP();"
-      >
-  <span class="glyphicon glyphicon-cloud-download"></span>
-</button>
+			<div class="btn-group">
+				<button id="but-http" type="button" class="btn btn-primary btn-lg"
+					onclick="switchTo('http');">
+					<span class="glyphicon glyphicon-cloud-download"></span>
+				</button>
 
-    <button id="but-mail" type="button" class="btn btn-default btn-lg"
-      onclick="switchToMail();"
-      >
-  <span class="glyphicon glyphicon-envelope"></span>
-</button>
+				<button id="but-mail" type="button" class="btn btn-default btn-lg"
+					onclick="switchTo('mail');">
+					<span class="glyphicon glyphicon-envelope"></span>
+				</button>
 
 
-    <button id="but-sms" type="button" class="btn btn-default btn-lg"
-      onclick="switchToSMS();"
-      >
-  <span class="glyphicon glyphicon-phone"></span>
-</button>
+				<button id="but-sms" type="button" class="btn btn-default btn-lg"
+					onclick="switchTo('sms');">
+					<span class="glyphicon glyphicon-phone"></span>
+				</button>
 
 
-    <button id="but-tel" type="button" class="btn btn-default btn-lg"
-      onclick="switchToTel();"
-      >
-  <span class="glyphicon glyphicon-phone-alt"></span>
-</button>
+				<button id="but-tel" type="button" class="btn btn-default btn-lg"
+					onclick="switchTo('tel');">
+					<span class="glyphicon glyphicon-phone-alt"></span>
+				</button>
 
-    <button id="but-text" type="button" class="btn btn-default btn-lg"
-      onclick="switchToText();"
-      >
-  <span class="glyphicon glyphicon-pencil"></span>
-</button>
+				<button id="but-text" type="button" class="btn btn-default btn-lg"
+					onclick="switchTo('text');">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
 
-          <button id="but-geo" type="button" class="btn btn-default btn-lg"
-      onclick="switchToGeo();"
-      >
-  <span class="glyphicon glyphicon-globe"></span>
-</button>
+				<button id="but-geo" type="button" class="btn btn-default btn-lg"
+					onclick="switchTo('geo');">
+					<span class="glyphicon glyphicon-globe"></span>
+				</button>
 
-          <button id="but-wifi" type="button" class="btn btn-default btn-lg"
-      onclick="switchToWifi();"
-      >
-  <span class="glyphicon glyphicon-signal"></span>
-</button>
+				<button id="but-wifi" type="button" class="btn btn-default btn-lg"
+					onclick="switchTo('wifi');">
+					<span class="glyphicon glyphicon-signal"></span>
+				</button>
 
-      
-</div>
+				</button>
 
-  </div>
-  
-  <div class="panel-body">
-
-<div id="input-http">
-<div class="input-group">
-  <span class="input-group-addon">  <span class="glyphicon glyphicon-cloud-download"></span></span>
-  <input type="text" class="form-control" placeholder="URL" id="http-url" oninput="onQRCodeMsgChange()">
-</div>
-</div>
-
-<div id="input-text" style="display:none">
-<div class="input-group">
-  <span class="input-group-addon">  <span class="glyphicon glyphicon-pencil"></span></span>
-  <input type="text" class="form-control" placeholder="text" id="text-message" oninput="onQRCodeMsgChange()">
-</div>
-</div>
+				<button id="but-vcard" type="button" class="btn btn-default btn-lg"
+					onclick="switchTo('vcard');">
+					<span class="glyphicon glyphicon-user"></span>
+				</button>
 
 
-<div id="input-tel" style="display:none">
-<div class="input-group">
-  <span class="input-group-addon">  <span class="glyphicon glyphicon-phone-alt"></span></span>
-  <input type="text" class="form-control" placeholder="tel" id="tel-number" oninput="onQRCodeMsgChange()">
-</div>
-</div>
+				</button>
 
-<div id="input-sms" style="display:none">
-<div class="input-group">
-  <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-  <input type="text" class="form-control" placeholder="tel number" id="sms-number" oninput="onQRCodeMsgChange()">
-</div>
-<div class="input-group">
-    <span class="input-group-addon">  <span class="glyphicon glyphicon glyphicon-font"></span></span>
-  <input type="text" class="form-control" placeholder="message" id="sms-message" oninput="onQRCodeMsgChange()">
-</div>
-</div>
+				<button id="but-cfg" type="button" class="btn btn-default btn-lg"
+					onclick="switchTo('cfg');">
+					<span class="glyphicon glyphicon-cog"></span>
+				</button>
+			</div>
 
-<div id="input-mail" style="display:none">
-<div class="input-group">
-  <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-envelope"></span>@</span>
-  <input type="text" class="form-control" placeholder="mail address" id="mail-address" oninput="onQRCodeMsgChange()">
-</div>
-<div class="input-group">
-    <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-font"></span></span>
-  <input type="text" class="form-control" placeholder="message" id="mail-message" oninput="onQRCodeMsgChange()">
-</div>
-</div>
+		</div>
 
-<div id="input-geo" style="display:none">
-<div class="input-group">
-  <span class="input-group-addon">  <span class="glyphicon glyphicon-globe"></span>
- Lat </span>
-  <input type="text" class="form-control" placeholder="lattitude" id="geo-lat" oninput="onQRCodeMsgChange()">
-</div>
-<div class="input-group">
-    <span class="input-group-addon">  <span class="glyphicon glyphicon-globe"></span>
- Lon</span>
-  <input type="text" class="form-control" placeholder="longitude" id="geo-lon" oninput="onQRCodeMsgChange()">
-</div>
-<div class="input-group">
-    <span class="input-group-addon">Query</span>
-  <input type="text" class="form-control" placeholder="query" id="geo-query" oninput="onQRCodeMsgChange()">
-</div>
-</div>
+		<div class="panel-body">
 
-<div id="input-wifi" style="display:none">
-<div class="input-group">
-  <span class="input-group-addon">SSID</span>
-  <input type="text" class="form-control" placeholder="ssid" id="wifi-ssid" oninput="onQRCodeMsgChange()">
-</div>
-<div class="input-group">
-    <span class="input-group-addon">Password</span>
-  <input type="text" class="form-control" placeholder="password" id="wifi-password" oninput="onQRCodeMsgChange()">
-</div>
-<div class="input-group">
-    <span class="input-group-addon">Encryption : <input type="radio"
-  name="wifi-type"  value="wep" oninput="onQRCodeMsgChange()"> WEP <input
-  type="radio" name="wifi-type"  value="wpa" oninput="onQRCodeMsgChange()"> WPA <input
-  type="radio" name="wifi-type" value="none" oninput="onQRCodeMsgChange()"> None</span>
-</div>
-<div class="input-group">
-    <span class="input-group-addon">Hidden : <input type="checkbox"
-  name="wifi-hidden" oninput="onQRCodeMsgChange()"></span>
-</div>
-</div>
+			<div id="input-http">
+				<div class="input-group">
+					<span class="input-group-addon"> <span
+						class="glyphicon glyphicon-cloud-download"></span></span> <input
+						type="text" class="form-control" placeholder="URL" id="http-url"
+						oninput="onInputChange()">
+				</div>
+			</div>
+
+			<div id="input-text" style="display: none">
+				<div class="input-group">
+					<span class="input-group-addon"> <span
+						class="glyphicon glyphicon-pencil"></span></span> <input type="text"
+						class="form-control" placeholder="text" id="text-message"
+						oninput="onInputChange()">
+				</div>
+			</div>
+
+
+			<div id="input-tel" style="display: none">
+				<div class="input-group">
+					<span class="input-group-addon"> <span
+						class="glyphicon glyphicon-phone-alt"></span></span> <input type="text"
+						class="form-control" placeholder="tel" id="tel-number"
+						oninput="onInputChange()">
+				</div>
+			</div>
+
+			<div id="input-sms" style="display: none">
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon-phone"></span></span> <input type="text"
+						class="form-control" placeholder="tel number" id="sms-number"
+						oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"> <span
+						class="glyphicon glyphicon glyphicon-font"></span></span> <input
+						type="text" class="form-control" placeholder="message"
+						id="sms-message" oninput="onInputChange()">
+				</div>
+			</div>
+
+			<div id="input-mail" style="display: none">
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-envelope"></span>@</span> <input
+						type="text" class="form-control" placeholder="mail address"
+						id="mail-address" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-font"></span></span> <input
+						type="text" class="form-control" placeholder="message"
+						id="mail-message" oninput="onInputChange()">
+				</div>
+			</div>
+
+			<div id="input-geo" style="display: none">
+				<div class="input-group">
+					<span class="input-group-addon"> <span
+						class="glyphicon glyphicon-globe"></span> Lat
+					</span> <input type="text" class="form-control" placeholder="lattitude"
+						id="geo-lat" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"> <span
+						class="glyphicon glyphicon-globe"></span> Lon
+					</span> <input type="text" class="form-control" placeholder="longitude"
+						id="geo-lon" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon">Query</span> <input type="text"
+						class="form-control" placeholder="query" id="geo-query"
+						oninput="onInputChange()">
+				</div>
+			</div>
+
+			<div id="input-wifi" style="display: none">
+				<div class="input-group">
+					<span class="input-group-addon">SSID</span> <input type="text"
+						class="form-control" placeholder="ssid" id="wifi-ssid"
+						oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon">Password</span> <input type="text"
+						class="form-control" placeholder="password" id="wifi-password"
+						oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon">Encryption : 
+						<input
+						type="radio" name="wifi-type" value="wep"
+						oninput="onInputChange()"> WEP 
+						<input type="radio"
+						name="wifi-type" value="wpa" oninput="onInputChange()">
+						WPA
+						<input type="radio" name="wifi-type" value="none"
+						oninput="onInputChange()"> None
+					</span>
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon">Hidden : <input
+						type="checkbox" name="wifi-hidden" value="true"
+						oninput="onInputChange()"></span>
+				</div>
+			</div>
+
+			<div id="input-vcard" style="display: none">
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-user"></span></span> <input
+						type="text" class="form-control" placeholder="Firstname"
+						id="vcard-firstname" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-user"></span></span> <input
+						type="text" class="form-control" placeholder="Lastname"
+						id="vcard-lastname" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-briefcase"></span></span> <input
+						type="text" class="form-control" placeholder="Organization"
+						id="vcard-org" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-user"></span></span> <input
+						type="text" class="form-control" placeholder="Title"
+						id="vcard-title" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-phone"></span></span> <input
+						type="text" class="form-control" placeholder="Phone number"
+						id="vcard-phonenumber" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-link"></span></span> <input
+						type="text" class="form-control" placeholder="URL"
+						id="vcard-url" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-envelope"></span></span> <input
+						type="text" class="form-control" placeholder="Postal address"
+						id="vcard-postaladdress" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-send"></span></span> <input
+						type="text" class="form-control" placeholder="EMail address"
+						id="vcard-mailaddress" oninput="onInputChange()">
+				</div>
+			</div>
+
+
+			<div id="input-cfg" style="display: none">
+				<div class="input-group">
+					<span class="input-group-addon">Error Code :
+						<input
+						type="radio" name="cfg-ecc" value="L"
+						oninput="onInputChange()"> Low
+						<input type="radio"
+						name="cfg-ecc" value="M" oninput="onInputChange()" checked>
+						Medium 
+						<input type="radio" name="cfg-ecc" value="Q"
+						oninput="onInputChange()"> Quartile
+						<input
+						type="radio" name="cfg-ecc" value="H"
+						oninput="onInputChange()"> High
+					</span>
+				</div>
+			</div>
 
 
 
-<div class="jumbotron">
-<canvas id="qr-code"></canvas>
-</div>
+			<div class="jumbotron">
+				<canvas id="qr-code"></canvas>
+			</div>
 
-<div class="panel-footer">
-  <p id="generatedstr"></p>
-  <span class="glyphicon glyphicon-qrcode"></span>
-  <span class="glyphicon glyphicon-copyright-mark"></span>
-  Didier Donsez, 2014
-</div>
-  </body>
+			<div class="panel-footer">
+				<p id="generatedstr"></p>
+				<span class="glyphicon glyphicon-qrcode"></span> <span
+					class="glyphicon glyphicon-copyright-mark"></span> Didier Donsez,
+				2014
+			</div>
+</body>
 </html>
