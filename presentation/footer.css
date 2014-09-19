@@ -1,0 +1,20 @@
+.reveal .footer {
+  position: relative;
+  botton: 1em;
+  left: 1em;
+  font-size: 0.2em;
+}
+
+.reveal .header {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 0.2em;
+}
+
+.reveal .footer2 {
+  border:1px solid green; width:120px; height:120px;
+  position:absolute;
+  bottom:-15px
+  font-size: 0.2em;
+}
