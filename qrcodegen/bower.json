@@ -1,0 +1,22 @@
+{
+  "name": "qrcodegen",
+  "main": "qrcodegen.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/donsez/donsez.github.io/qrcodegen",
+  "authors": [
+    "Didier Donsez"
+  ],
+  "description": "a simple QR code generator for mobile devices",
+  "keywords": [
+    "qr",
+    "code"
+  ],
+  "license": "ASL2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
