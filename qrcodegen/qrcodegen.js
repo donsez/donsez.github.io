@@ -45,7 +45,7 @@ function onInputChange() {
 		} else if (currentmode == "tel") {
 			str = 'tel:' + $("#tel-number").val();
 		} else if (currentmode == "geo") {
-			str = 'geo:' + $("#geo-lat").val() + ':' + $("#geo-lon").val();
+			str = 'geo:' + $("#geo-lat").val() + ',' + $("#geo-lon").val();
 			_gq = $("#geo-query").val();
 			if (_gq != '')
 				str += '?q=' + _gq;
