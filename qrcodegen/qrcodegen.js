@@ -16,7 +16,7 @@ var qrcode_msg = '';
 
 
 /**
- * Calculates the buffers CRC16.
+ * Calculates the CRC16 of a string.
  *
  * @param {String} str the data str.
  * @return {String} the calculated CRC16 on 4 digits.
@@ -121,7 +121,7 @@ function onInputChange() {
 				str += "ADR:" + _s + "\n";
 			str += "END:VCARD";
 		} else 	 if (currentmode == "lorawan") {
-			str = "LW:";
+			str = "LW";
 
 			_s = $("#lorawan-schema").val(); // TODO check length 2 and mandatory
 			if (_s != '')
