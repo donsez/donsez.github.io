@@ -1,7 +1,7 @@
 /* 
  * QR Code offline generator webapp
  * @Author: Didier Donsez
- * @Version: 0.1.1
+ * @Version: 0.1.2
  */
 
 // Error Correction Capability
@@ -13,6 +13,34 @@ var qrcode_size = 10;
 
 // current QRcode message
 var qrcode_msg = '';
+
+
+/**
+ * Calculates the buffers CRC16.
+ *
+ * @param {String} str the data str.
+ * @return {String} the calculated CRC16 on 4 digits.
+ * 
+ * Source: github.com/yaacov/node-modbus-serial
+ */
+
+function crc16str(str) {
+    var crc = 0xFFFF;
+    var odd;
+
+    for (var i = 0; i < str.length; i++) {
+        crc = crc ^ str.charCodeAt(i);
+
+        for (var j = 0; j < 8; j++) {
+            odd = crc & 0x0001;
+            crc = crc >> 1;
+            if (odd) {
+                crc = crc ^ 0xA001;
+            }
+        }
+	}
+	return	('0000' + crc.toString(16).toUpperCase()).slice(-4);
+};
 
 // generate the QR code in the canvas
 function genQRCode(msg) {
@@ -32,8 +60,7 @@ function onInputChange() {
 		str = "";
 		if (currentmode == "http") {
 			_u = $("#http-url").val();
-			_prefix = 'http://';
-			if (_u.indexOf(_prefix) < 0) {
+			if ((_u.indexOf('http://') < 0) && (_u.indexOf('https://') < 0 )) {
 				str = 'http://';
 			}
 			str += _u;
@@ -93,7 +120,36 @@ function onInputChange() {
 			if (_s != '')
 				str += "ADR:" + _s + "\n";
 			str += "END:VCARD";
+		} else 	 if (currentmode == "lorawan") {
+			str = "LW:";
+
+			_s = $("#lorawan-schema").val(); // TODO check length 2 and mandatory
+			if (_s != '')
+				str += ':' +_s;
+			_s = $("#lorawan-joineui").val(); // TODO check length 8 and mandatory
+			if (_s != '')
+				str += ':' +_s;
+			_s = $("#lorawan-deveui").val(); // TODO check length 8 and mandatory
+			if (_s != '')
+				str += ':' +_s;
+			_s = $("#lorawan-profileid").val(); // TODO check length 8
+			if (_s != '')
+				str += ':' +_s;	
+			_s = $("#lorawan-ownertoken").val(); // TODO check length 4 
+			if (_s != '')
+				str += ':' +_s;
+			_s = $("#lorawan-sernum").val(); // TODO check length 4
+			if (_s != '')
+				str += ':' +_s;
+			_s = $("#lorawan-proprietary").val(); // TODO check length
+			if (_s != '')
+				str += ':' +_s;
+		
+			str = str.toUpperCase();
+
+			str += ':' + crc16str(str); // MODBUS CRC16 
 		}
+		
 		qrcode_msg = str;
 	}
 

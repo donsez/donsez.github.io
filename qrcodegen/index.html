@@ -73,14 +73,14 @@
 					<span class="glyphicon glyphicon-signal"></span>
 				</button>
 
-				</button>
-
 				<button id="but-vcard" type="button" class="btn btn-default btn-lg"
 					onclick="switchTo('vcard');">
 					<span class="glyphicon glyphicon-user"></span>
 				</button>
 
-
+				<button id="but-lorawan" type="button" class="btn btn-default btn-lg"
+					onclick="switchTo('lorawan');">
+					<span class="glyphicon glyphicon-dashboard"></span>
 				</button>
 
 				<button id="but-cfg" type="button" class="btn btn-default btn-lg"
@@ -251,7 +251,52 @@
 						id="vcard-mailaddress" oninput="onInputChange()">
 				</div>
 			</div>
+			<!-- https://lora-alliance.org/resource_hub/tr005-lorawan-device-identification-qr-codes/ -->
+			<div id="input-lorawan" style="display: none">
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
+						type="text" class="form-control" placeholder="Schema"
+						id="lorawan-schema" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
+						type="text" class="form-control" placeholder="JoinEUI"
+						id="lorawan-joineui" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
+						type="text" class="form-control" placeholder="DevEUI"
+						id="lorawan-deveui" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
+						type="text" class="form-control" placeholder="ProfileID"
+						id="lorawan-profileid" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
+						type="text" class="form-control" placeholder="OwnerToken"
+						id="lorawan-ownertoken" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
+						type="text" class="form-control" placeholder="SerialNumber"
+						id="lorawan-sernum" oninput="onInputChange()">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"><span
+						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
+						type="text" class="form-control" placeholder="Proprietary"
+						id="lorawan-proprietary" oninput="onInputChange()">
+				</div>
 
+			</div>
 
 			<div id="input-cfg" style="display: none">
 				<div class="input-group">
