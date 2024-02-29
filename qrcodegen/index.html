@@ -185,12 +185,12 @@
 				<div class="input-group">
 					<span class="input-group-addon">Encryption : 
 						<input
-						type="radio" name="wifi-type" value="wep"
+						type="radio" name="wifi-type" value="WEP"
 						oninput="onInputChange()"> WEP 
 						<input type="radio"
-						name="wifi-type" value="wpa" oninput="onInputChange()">
+						name="wifi-type" value="WPA" oninput="onInputChange()">
 						WPA
-						<input type="radio" name="wifi-type" value="none"
+						<input type="radio" name="wifi-type" value="NONE"
 						oninput="onInputChange()"> None
 					</span>
 				</div>
@@ -257,26 +257,38 @@
 					<span class="input-group-addon"><span
 						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
 						type="text" class="form-control" placeholder="Schema"
-						id="lorawan-schema" oninput="onInputChange()">
+						id="lorawan-schema" required oninput="onInputChange()">
+						<!--<div class="invalid-feedback">
+							Please choose a schema.
+						  </div-->
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon"><span
 						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
 						type="text" class="form-control" placeholder="JoinEUI"
-						id="lorawan-joineui" oninput="onInputChange()">
+						id="lorawan-joineui" required oninput="onInputChange()">
+						<!--small id="joineuiHelpBlock" class="form-text text-muted">
+							JoinEUI must have 8 hexa characters long.
+						</small -->
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon"><span
 						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
 						type="text" class="form-control" placeholder="DevEUI"
-						id="lorawan-deveui" oninput="onInputChange()">
+						id="lorawan-deveui" required oninput="onInputChange()">
+						<!-- small id="deveuiHelpBlock" class="form-text text-muted">
+							DevEUI must have 8 hexa characters long.
+						</small -->
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon"><span
 						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
 						type="text" class="form-control" placeholder="ProfileID"
-						id="lorawan-profileid" oninput="onInputChange()">
-				</div>
+						id="lorawan-profileid" required oninput="onInputChange()">
+						<!-- small id="profileidHelpBlock" class="form-text text-muted">
+							ProfileId must have 8 hexa characters long.
+						</small -->
+					</div>
 				<div class="input-group">
 					<span class="input-group-addon"><span
 						class="glyphicon glyphicon glyphicon-cog"></span></span> <input
@@ -325,7 +337,7 @@
 			<div class="panel-footer">
 				<p id="generatedstr"></p>
 				<span class="glyphicon glyphicon-qrcode"></span> <span
-					class="glyphicon glyphicon-copyright-mark"></span> Didier Donsez, 2014-2022
+					class="glyphicon glyphicon-copyright-mark"></span> Didier Donsez, 2014-2024
 			</div>
 </body>
 </html>

@@ -78,14 +78,12 @@ function onInputChange() {
 				str += '?q=' + _gq;
 		} else if (currentmode == "wifi") {
 			// WIFI:S:ssid;T:WEP;P:password;H:true;;
-			str = 'WIFI:S:'
-					+ $("#wifi-ssid").val()
-					+ ';P:'
-					+ $("#wifi-password").val()
-					+ ';T:'
-					+ $("input:radio[name=wifi-type]:checked").val()
-					+ ($("input:checkbox[name=wifi-hidden]:checked").val() == "true" ? ';H:true'
-							: '')
+			str = 'WIFI' 
+					+ ':T:'	+ $("input:radio[name=wifi-type]:checked").val()
+					+ ';S:' + $("#wifi-ssid").val()
+					+ ';P:' + $("#wifi-password").val()
+					+ ($("input:checkbox[name=wifi-hidden]:checked").val() == "true" ? ';H:true;;'
+							: ';H:;;')
 			// @TODO add checkbox hidden
 		} else if (currentmode == "mail") {
 			str = 'mailto:' + $("#mail-address").val() + ':'
